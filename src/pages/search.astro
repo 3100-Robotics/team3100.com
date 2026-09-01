@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Search — The Lightning Turtles">
+    <Fragment slot="head">
+        <link rel="stylesheet" href="/pagefind/pagefind-component-ui.css" />
+    </Fragment>
+
+    <h1 class="mb-3">Search</h1>
+    <p class="lead">Search across all pages on the site.</p>
+
+    <div id="search-shell" class="mt-4">
+        <pagefind-config preload></pagefind-config>
+        <pagefind-input></pagefind-input>
+        <pagefind-summary default-message="Start typing to search the site."
+        ></pagefind-summary>
+        <pagefind-keyboard-hints></pagefind-keyboard-hints>
+        <pagefind-results></pagefind-results>
+    </div>
+
+    <script is:inline type="module" src="/pagefind/pagefind-component-ui.js"
+    ></script>
+</Layout>

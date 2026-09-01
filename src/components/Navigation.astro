@@ -1,0 +1,128 @@
+---
+import LightningTurtlesLockup from "../assets/lightning-turtle-lockup.jpg";
+---
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img
+                src={LightningTurtlesLockup.src}
+                alt="The Lightning Turtles"
+                height="48"
+            />
+        </a>
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#main-nav"
+            aria-controls="main-nav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="main-nav">
+            <div class="d-flex align-items-center gap-3">
+                <button
+                    class="btn btn-outline-secondary btn-sm"
+                    type="button"
+                    id="theme-toggle"
+                    aria-label="Toggle color theme"
+                >
+                    Switch to dark mode
+                </button>
+                <ul class="navbar-nav flex-row gap-2">
+                    <li class="nav-item dropdown d-flex align-items-center">
+                        <a class="nav-link" href="/about">About</a>
+                        <button
+                            class="nav-link dropdown-toggle border-0 bg-transparent px-1"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            aria-label="Toggle About menu"
+                        >
+                        </button>
+
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="/about/mentors">
+                                    Mentors
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" href="/about/info">
+                                    Info
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="dropdown-item"
+                                    href="/about/team-resources"
+                                    >Team Resources</a
+                                >
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/donate">Donate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sponsors">Sponsors</a>
+                    </li>
+                    <li class="nav-item dropdown d-flex align-items-center">
+                        <a class="nav-link" href="/news">News</a>
+                        <button
+                            class="nav-link dropdown-toggle border-0 bg-transparent px-1"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            aria-label="Toggle News menu"
+                        >
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a
+                                    class="dropdown-item"
+                                    href="/news/photo-gallery"
+                                >
+                                    Photo Gallery
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/search">Search</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <script is:inline>
+            const toggleButton = document.getElementById("theme-toggle");
+
+            const getTheme = () =>
+                document.documentElement.getAttribute("data-bs-theme") ||
+                "light";
+
+            const syncToggleLabel = () => {
+                if (!toggleButton) return;
+                const nextTheme = getTheme() === "dark" ? "light" : "dark";
+                toggleButton.textContent = `Switch to ${nextTheme} mode`;
+            };
+
+            syncToggleLabel();
+
+            toggleButton?.addEventListener("click", () => {
+                const nextTheme = getTheme() === "dark" ? "light" : "dark";
+                document.documentElement.setAttribute(
+                    "data-bs-theme",
+                    nextTheme,
+                );
+                localStorage.setItem("theme", nextTheme);
+                syncToggleLabel();
+            });
+        </script>
+    </div>
+</nav>
