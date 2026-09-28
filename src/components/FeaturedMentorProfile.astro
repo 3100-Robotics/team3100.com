@@ -1,0 +1,82 @@
+---
+import { Image } from "astro:assets";
+import type { MentorProfileData } from "../data/mentors";
+import "../styles/mentor-profile.css";
+import { getMentorDisplayData } from "./mentorProfileDisplay";
+
+type Props = Omit<MentorProfileData, "role">;
+
+const { name, title, yearsInFirst, bio, tags, photoAlt, imageSrc } =
+    Astro.props;
+
+const { experienceLabel, displayTags } = getMentorDisplayData({
+    yearsInFirst,
+    tags,
+});
+---
+
+<article
+    class="mentor-profile card border-success-subtle border-2 shadow-sm rounded-4 overflow-hidden h-100"
+>
+    <div class="row g-0 align-items-stretch">
+        <div class="col-md-4">
+            <div
+                class="profile-photo featured-photo position-relative bg-success-subtle text-success-emphasis"
+            >
+                <Image
+                    src={imageSrc}
+                    alt={photoAlt}
+                    class="profile-image w-100 h-100"
+                    loading="lazy"
+                />
+                <div
+                    class="position-absolute top-0 start-0 end-0 bottom-0 d-flex flex-column justify-content-between p-4 p-lg-5"
+                >
+                    <span
+                        class="badge text-bg-light border align-self-start text-uppercase"
+                    >
+                        Featured Mentor
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="p-4 p-lg-5">
+                <p class="small text-uppercase fw-semibold text-success mb-2">
+                    {title}
+                </p>
+                <h2 class="h1 mb-3">
+                    {name}
+                    {
+                        experienceLabel && (
+                            <small class="d-block fs-6 fw-normal text-body-secondary mt-2">
+                                {experienceLabel}
+                            </small>
+                        )
+                    }
+                </h2>
+                {
+                    bio.map((paragraph, index) => (
+                        <p
+                            class:list={[
+                                "lh-lg",
+                                index === bio.length - 1 && "mb-4",
+                            ]}
+                        >
+                            {paragraph}
+                        </p>
+                    ))
+                }
+                <div class="meta-row d-flex flex-wrap gap-2">
+                    {
+                        displayTags.map((tag) => (
+                            <span class="badge rounded-pill border px-3 py-2 text-bg-success-subtle text-success-emphasis border-success-subtle">
+                                {tag}
+                            </span>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

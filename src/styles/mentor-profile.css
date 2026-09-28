@@ -1,0 +1,35 @@
+.mentor-profile .profile-photo {
+    min-height: 16rem;
+    overflow: hidden;
+}
+
+.mentor-profile .profile-image {
+    display: block;
+    object-fit: cover;
+}
+
+.mentor-profile .archived-profile {
+    filter: grayscale(0.8);
+    opacity: 0.78;
+}
+
+.mentor-profile .featured-photo {
+    height: 100%;
+    min-height: 100%;
+}
+
+.mentor-profile .featured-photo .profile-image {
+    position: absolute;
+    inset: 0;
+}
+
+.mentor-profile .card-photo {
+    min-height: 0;
+    aspect-ratio: 1 / 1;
+}
+
+@media (max-width: 767.98px) {
+    .mentor-profile .profile-photo {
+        min-height: 14rem;
+    }
+}
