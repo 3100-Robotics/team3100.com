@@ -1,0 +1,66 @@
+---
+import { Image } from "astro:assets";
+import type { MentorProfileData } from "../data/mentors";
+import "../styles/mentor-profile.css";
+import { getMentorDisplayData } from "./mentorProfileDisplay";
+
+type Props = Omit<MentorProfileData, "role">;
+
+const { name, title, yearsInFirst, bio, tags, photoAlt, imageSrc } =
+    Astro.props;
+
+const { isArchived, experienceLabel, displayTags } = getMentorDisplayData({
+    yearsInFirst,
+    tags,
+});
+---
+
+<article
+    class:list={[
+        "mentor-profile card rounded-4 h-100 shadow-sm border-0 p-4 d-flex flex-column bg-body-tertiary",
+        isArchived && "archived-profile",
+    ]}
+>
+    <div
+        class="profile-photo rounded-4 mb-3 card-photo position-relative overflow-hidden bg-success-subtle text-success-emphasis"
+    >
+        <Image
+            src={imageSrc}
+            alt={photoAlt}
+            class="profile-image w-100 h-100"
+            loading="lazy"
+        />
+    </div>
+    <p class="small text-uppercase fw-semibold text-success mb-2">{title}</p>
+    <h3 class="h4 mb-2">
+        {name}
+        {
+            experienceLabel && (
+                <small class="d-block fs-6 fw-normal text-body-secondary mt-1">
+                    {experienceLabel}
+                </small>
+            )
+        }
+    </h3>
+    {
+        bio.map((paragraph, index) => (
+            <p
+                class:list={[
+                    "text-body-secondary",
+                    index === bio.length - 1 && "mb-3",
+                ]}
+            >
+                {paragraph}
+            </p>
+        ))
+    }
+    <div class="meta-row d-flex flex-wrap gap-2 mt-auto">
+        {
+            displayTags.map((tag) => (
+                <span class="badge rounded-pill border px-3 py-2 text-bg-light border text-body-secondary">
+                    {tag}
+                </span>
+            ))
+        }
+    </div>
+</article>
