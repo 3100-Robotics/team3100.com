@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import FeaturedMentorProfile from "../../components/FeaturedMentorProfile.astro";
 import MentorCard from "../../components/MentorCard.astro";
-import { isMentorArchived } from "../../components/mentorProfileDisplay";
+import { isMentorArchived } from "../../lib/mentorProfile";
 import { mentors } from "../../data/mentors";
 
 const activeMentors = Object.entries(mentors).filter(
@@ -90,7 +90,7 @@ const featuredMentor = activeMentors.find(
         archivedMentors.length > 0 && (
             <section class="mt-5 mb-5">
                 <details class="border rounded-4 p-4 bg-body-tertiary">
-                    <summary class="h2 mb-0">Prior mentors</summary>
+                    <summary class="h2 mb-0">Past mentors</summary>
                     <p class="text-body-secondary mt-3 mb-4">
                         Meet the mentors who previously supported the team.
                     </p>

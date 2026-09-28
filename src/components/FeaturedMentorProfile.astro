@@ -2,7 +2,8 @@
 import { Image } from "astro:assets";
 import type { MentorProfileData } from "../data/mentors";
 import "../styles/mentor-profile.css";
-import { getMentorDisplayData } from "./mentorProfileDisplay";
+import MentorTags from "./MentorTags.astro";
+import { getMentorDisplayData } from "../lib/mentorProfile";
 
 type Props = Omit<MentorProfileData, "role">;
 
@@ -30,10 +31,10 @@ const { experienceLabel, displayTags } = getMentorDisplayData({
                     loading="lazy"
                 />
                 <div
-                    class="position-absolute top-0 start-0 end-0 bottom-0 d-flex flex-column justify-content-between p-4 p-lg-5"
+                    class="position-absolute bottom-0 start-0 end-0 bottom-0 d-flex flex-column justify-content-between p-4 p-lg-5"
                 >
                     <span
-                        class="badge text-bg-light border align-self-start text-uppercase"
+                        class="badge text-bg-light border align-self-end text-uppercase"
                     >
                         Featured Mentor
                     </span>
@@ -67,15 +68,7 @@ const { experienceLabel, displayTags } = getMentorDisplayData({
                         </p>
                     ))
                 }
-                <div class="meta-row d-flex flex-wrap gap-2">
-                    {
-                        displayTags.map((tag) => (
-                            <span class="badge rounded-pill border px-3 py-2 text-bg-success-subtle text-success-emphasis border-success-subtle">
-                                {tag}
-                            </span>
-                        ))
-                    }
-                </div>
+                <MentorTags tags={displayTags} />
             </div>
         </div>
     </div>
