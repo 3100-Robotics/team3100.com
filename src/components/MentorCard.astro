@@ -2,7 +2,8 @@
 import { Image } from "astro:assets";
 import type { MentorProfileData } from "../data/mentors";
 import "../styles/mentor-profile.css";
-import { getMentorDisplayData } from "./mentorProfileDisplay";
+import MentorTags from "./MentorTags.astro";
+import { getMentorDisplayData } from "../lib/mentorProfile";
 
 type Props = Omit<MentorProfileData, "role">;
 
@@ -22,7 +23,12 @@ const { isArchived, experienceLabel, displayTags } = getMentorDisplayData({
     ]}
 >
     <div
-        class="profile-photo rounded-4 mb-3 card-photo position-relative overflow-hidden bg-success-subtle text-success-emphasis"
+        class:list={[
+            "profile-photo rounded-4 mb-3 card-photo position-relative overflow-hidden",
+            isArchived
+                ? "archived-photo"
+                : "bg-success-subtle text-success-emphasis",
+        ]}
     >
         <Image
             src={imageSrc}
@@ -31,7 +37,14 @@ const { isArchived, experienceLabel, displayTags } = getMentorDisplayData({
             loading="lazy"
         />
     </div>
-    <p class="small text-uppercase fw-semibold text-success mb-2">{title}</p>
+    <p
+        class:list={[
+            "small text-uppercase fw-semibold mb-2",
+            isArchived ? "archived-title" : "text-success",
+        ]}
+    >
+        {title}
+    </p>
     <h3 class="h4 mb-2">
         {name}
         {
@@ -54,13 +67,7 @@ const { isArchived, experienceLabel, displayTags } = getMentorDisplayData({
             </p>
         ))
     }
-    <div class="meta-row d-flex flex-wrap gap-2 mt-auto">
-        {
-            displayTags.map((tag) => (
-                <span class="badge rounded-pill border px-3 py-2 text-bg-light border text-body-secondary">
-                    {tag}
-                </span>
-            ))
-        }
+    <div class="mt-auto">
+        <MentorTags tags={displayTags} archived={isArchived} />
     </div>
 </article>
