@@ -22,3 +22,6 @@ npm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# editor-specific settings
+.vscode/
