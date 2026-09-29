@@ -1,5 +1,5 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title="Search — The Lightning Turtles">
@@ -13,12 +13,14 @@ import Layout from "../layouts/Layout.astro";
     <div id="search-shell" class="mt-4">
         <pagefind-config preload></pagefind-config>
         <pagefind-input></pagefind-input>
-        <pagefind-summary default-message="Start typing to search the site."
-        ></pagefind-summary>
+        <pagefind-summary default-message="Start typing to search the site."></pagefind-summary>
         <pagefind-keyboard-hints></pagefind-keyboard-hints>
         <pagefind-results></pagefind-results>
     </div>
 
-    <script is:inline type="module" src="/pagefind/pagefind-component-ui.js"
+    <script
+        is:inline
+        type="module"
+        src="/pagefind/pagefind-component-ui.js"
     ></script>
 </Layout>
