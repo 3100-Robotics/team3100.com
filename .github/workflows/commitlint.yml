@@ -1,4 +1,4 @@
-name: Conventional Commits
+name: Commit and PR title lint
 
 on:
     pull_request:
@@ -9,7 +9,7 @@ permissions:
 
 jobs:
     commitlint:
-        name: Validate commit messages
+        name: Validate commits and PR title
         runs-on: ubuntu-latest
         steps:
             - name: Check out repository
