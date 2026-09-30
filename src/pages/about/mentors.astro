@@ -5,10 +5,13 @@ import MentorCard from "../../components/MentorCard.astro";
 import { isMentorArchived } from "../../lib/mentorProfile";
 import { mentors } from "../../data/mentors";
 
-const activeMentors = Object.entries(mentors).filter(
+const sortedMentors = Object.entries(mentors).sort(([lastNameA], [lastNameB]) =>
+    lastNameA.localeCompare(lastNameB),
+);
+const activeMentors = sortedMentors.filter(
     ([, mentor]) => !isMentorArchived(mentor.yearsInFirst),
 );
-const archivedMentors = Object.entries(mentors).filter(([, mentor]) =>
+const archivedMentors = sortedMentors.filter(([, mentor]) =>
     isMentorArchived(mentor.yearsInFirst),
 );
 const featuredMentor = activeMentors.find(
