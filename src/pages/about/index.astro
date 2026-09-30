@@ -3,9 +3,21 @@ import Layout from "../../layouts/Layout.astro";
 ---
 
 <Layout title="About — The Lightning Turtles">
-    <h1 class="mb-3">About</h1>
-    <p class="lead">
-        This is a sample about page. You can edit this page by modifying
-        <code>src/pages/about/index.astro</code>.
-    </p>
+    <section class="bg-body-tertiary border rounded-4 p-4 p-md-5 mb-5">
+        <p class="text-uppercase fw-semibold text-success mb-2">About us</p>
+        <h1 class="display-5 fw-bold mb-3">Building skills, teamwork, and the future</h1>
+        <p class="lead mb-0">
+            Our students explore engineering, programming, media, business, and more while working together to build robots and compete as a team.
+        </p>
+    </section>
+    
+    <section class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+        <div>
+            <h2 class="h3 mb-2">Meet the people who support the team</h2>
+            <p class="text-body-secondary mb-0">
+                Learn more about the mentors who guide our students throughout the season.
+            </p>
+        </div>
+        <a class="btn btn-primary" href="/about/mentors">Meet our mentors</a>
+    </section>
 </Layout>

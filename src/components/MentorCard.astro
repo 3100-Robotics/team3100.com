@@ -38,8 +38,9 @@ const { isArchived, experienceLabel, displayTags } = getMentorDisplayData({
         />
     </div>
     <p
+        title={title}
         class:list={[
-            "small text-uppercase fw-semibold mb-2",
+            "small text-uppercase fw-semibold mb-2 text-nowrap text-truncate",
             isArchived ? "archived-title" : "text-success",
         ]}
     >
@@ -47,13 +48,16 @@ const { isArchived, experienceLabel, displayTags } = getMentorDisplayData({
     </p>
     <h3 class="h4 mb-2">
         {name}
-        {
-            experienceLabel && (
-                <small class="d-block fs-6 fw-normal text-body-secondary mt-1">
-                    {experienceLabel}
-                </small>
-            )
-        }
+        <small
+            aria-hidden={!experienceLabel}
+            class:list={[
+                "d-block fs-6 fw-normal text-body-secondary mt-2 ps-2 border-start border-3",
+                isArchived ? "border-secondary" : "border-success",
+                !experienceLabel && "invisible",
+            ]}
+        >
+            {experienceLabel || " "}
+        </small>
     </h3>
     {
         bio.map((paragraph, index) => (

@@ -13,7 +13,7 @@ export interface MentorProfileData {
     name: string;
     title: string;
     role: "coach" | "mentor";
-    yearsInFirst?: [start: number | null, end?: number];
+    yearsInFirst: [start: number | null, end?: number];
     photoAlt: string;
     imageSrc: ImageMetadata;
     bio: string[];
@@ -30,7 +30,7 @@ export const mentors: Record<string, MentorProfileData> = {
         imageSrc: BergquistEric,
         bio: [
             "Eric Bergquist holds a BS in Mechanical Engineering and has 5 years of experience in mechanical design and industrial automation systems for electrical connectors. He is a Certified SOLIDWORKS Associate and has 5 years of experience with Onshape, the most common CAD software used in FIRST Robotics Competition.",
-            "He has 8 total years of FIRST experience as both a student and mentor. He leads CAD and the mechanical design curriculum and is responsible for the quality and maintenance of the LIGHTNING TURTLES CAD work during the FRC season.",
+            "His years of experience encompass being both a student and mentor. He leads CAD and the mechanical design curriculum and is responsible for the quality and maintenance of the LIGHTNING TURTLES CAD work during the FRC season.",
         ],
         tags: ["Head coach", "CAD instruction", "Alum"],
     },
@@ -64,6 +64,7 @@ export const mentors: Record<string, MentorProfileData> = {
         name: "Esmé Kelley",
         title: "Programming Mentor",
         role: "mentor",
+        yearsInFirst: [2025],
         photoAlt: "Esme Kelley photo",
         imageSrc: KelleyEsme,
         bio: [
@@ -80,6 +81,7 @@ export const mentors: Record<string, MentorProfileData> = {
         name: "Karen Romine",
         title: "Electrical Mentor and Team Organization",
         role: "mentor",
+        yearsInFirst: [2025],
         photoAlt: "Karen Romine photo",
         imageSrc: RomineKaren,
         bio: [

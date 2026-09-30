@@ -14,9 +14,11 @@ export function getMentorDisplayData({
     const [startYear = null] = yearsInFirst ?? [];
     const currentYear = new Date().getFullYear();
     const isArchived = isMentorArchived(yearsInFirst);
+    const yearsOfExperience =
+        startYear !== null ? currentYear - startYear : null;
     const experienceLabel =
-        startYear !== null
-            ? `FIRST since ${startYear} (${currentYear - startYear} years)`
+        yearsOfExperience !== null
+            ? `FIRST since ${startYear} (${yearsOfExperience} ${yearsOfExperience === 1 ? "year" : "years"})`
             : null;
 
     return {

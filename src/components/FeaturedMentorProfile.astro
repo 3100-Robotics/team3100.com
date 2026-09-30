@@ -10,7 +10,7 @@ type Props = Omit<MentorProfileData, "role">;
 const { name, title, yearsInFirst, bio, tags, photoAlt, imageSrc } =
     Astro.props;
 
-const { experienceLabel, displayTags } = getMentorDisplayData({
+const { isArchived, experienceLabel, displayTags } = getMentorDisplayData({
     yearsInFirst,
     tags,
 });
@@ -43,18 +43,24 @@ const { experienceLabel, displayTags } = getMentorDisplayData({
         </div>
         <div class="col-md-8">
             <div class="p-4 p-lg-5">
-                <p class="small text-uppercase fw-semibold text-success mb-2">
+                <p
+                    class="small text-uppercase fw-semibold text-success mb-2 text-nowrap text-truncate"
+                    title={title}
+                >
                     {title}
                 </p>
                 <h2 class="h1 mb-3">
                     {name}
-                    {
-                        experienceLabel && (
-                            <small class="d-block fs-6 fw-normal text-body-secondary mt-2">
-                                {experienceLabel}
-                            </small>
-                        )
-                    }
+                    <small
+                        aria-hidden={!experienceLabel}
+                        class:list={[
+                            "d-block fs-6 fw-normal text-body-secondary mt-2 ps-2 border-start border-3",
+                            isArchived ? "border-secondary" : "border-success",
+                            !experienceLabel && "invisible",
+                        ]}
+                    >
+                        {experienceLabel || " "}
+                    </small>
                 </h2>
                 {
                     bio.map((paragraph, index) => (
