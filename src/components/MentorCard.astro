@@ -1,0 +1,77 @@
+---
+import { Image } from "astro:assets";
+import type { MentorProfileData } from "../data/mentors";
+import "../styles/mentor-profile.css";
+import MentorTags from "./MentorTags.astro";
+import { getMentorDisplayData } from "../lib/mentorProfile";
+
+type Props = Omit<MentorProfileData, "role">;
+
+const { name, title, yearsInFirst, bio, tags, photoAlt, imageSrc } =
+    Astro.props;
+
+const { isArchived, experienceLabel, displayTags } = getMentorDisplayData({
+    yearsInFirst,
+    tags,
+});
+---
+
+<article
+    class:list={[
+        "mentor-profile card rounded-4 h-100 shadow-sm border-0 p-4 d-flex flex-column bg-body-tertiary",
+        isArchived && "archived-profile",
+    ]}
+>
+    <div
+        class:list={[
+            "profile-photo rounded-4 mb-3 card-photo position-relative overflow-hidden",
+            isArchived
+                ? "archived-photo"
+                : "bg-success-subtle text-success-emphasis",
+        ]}
+    >
+        <Image
+            src={imageSrc}
+            alt={photoAlt}
+            class="profile-image w-100 h-100"
+            loading="lazy"
+        />
+    </div>
+    <p
+        title={title}
+        class:list={[
+            "small text-uppercase fw-semibold mb-2 text-nowrap text-truncate",
+            isArchived ? "archived-title" : "text-success",
+        ]}
+    >
+        {title}
+    </p>
+    <h3 class="h4 mb-2">
+        {name}
+        <small
+            aria-hidden={!experienceLabel}
+            class:list={[
+                "d-block fs-6 fw-normal text-body-secondary mt-2 ps-2 border-start border-3",
+                isArchived ? "border-secondary" : "border-success",
+                !experienceLabel && "invisible",
+            ]}
+        >
+            {experienceLabel || " "}
+        </small>
+    </h3>
+    {
+        bio.map((paragraph, index) => (
+            <p
+                class:list={[
+                    "text-body-secondary",
+                    index === bio.length - 1 && "mb-3",
+                ]}
+            >
+                {paragraph}
+            </p>
+        ))
+    }
+    <div class="mt-auto">
+        <MentorTags tags={displayTags} archived={isArchived} />
+    </div>
+</article>

@@ -1,11 +1,111 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import FeaturedMentorProfile from "../../components/FeaturedMentorProfile.astro";
+import MentorCard from "../../components/MentorCard.astro";
+import { isMentorArchived } from "../../lib/mentorProfile";
+import { mentors } from "../../data/mentors";
+
+const sortedMentors = Object.entries(mentors).sort(([lastNameA], [lastNameB]) =>
+    lastNameA.localeCompare(lastNameB),
+);
+const activeMentors = sortedMentors.filter(
+    ([, mentor]) => !isMentorArchived(mentor.yearsInFirst),
+);
+const archivedMentors = sortedMentors.filter(([, mentor]) =>
+    isMentorArchived(mentor.yearsInFirst),
+);
+const featuredMentor = activeMentors.find(
+    ([, mentor]) => mentor.role === "coach",
+)?.[1];
 ---
 
 <Layout title="Mentors — The Lightning Turtles">
-    <h1 class="mb-3">Mentors</h1>
-    <p class="lead">
-        This is a sample mentors page. You can edit this page by modifying
-        <code>src/pages/about/mentors.astro</code>.
-    </p>
+    <section
+        class="bg-body-tertiary border rounded-4 p-4 p-md-5 mb-5 overflow-hidden"
+    >
+        <div class="row align-items-center g-4">
+            <div class="col-lg-7">
+                <span class="text-uppercase fw-semibold text-success"
+                    >About the mentors</span
+                >
+                <h1 class="display-5 fw-bold mt-3 mb-3">
+                    Meet the mentors behind the team
+                </h1>
+                <p class="lead mb-0">
+                    Our mentors bring engineering, design, software, strategy,
+                    and leadership experience to the build season. They help
+                    students solve real problems, grow their skills, and learn
+                    how strong teams work.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-5">
+        <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4"
+        >
+            <div>
+                <p class="text-uppercase fw-semibold text-success mb-2">
+                    Spotlight
+                </p>
+                <h2 class="h1 mb-0">Head coach</h2>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            {
+                featuredMentor && (
+                    <div class="col-12">
+                        <FeaturedMentorProfile {...featuredMentor} />
+                    </div>
+                )
+            }
+        </div>
+    </section>
+
+    <section>
+        <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4"
+        >
+            <div>
+                <p class="text-uppercase fw-semibold text-success mb-2">
+                    Full team
+                </p>
+                <h2 class="h1 mb-0">Mentors</h2>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+            {
+                activeMentors
+                    .filter(([, mentor]) => mentor.role !== "coach")
+                    .map(([, mentor]) => (
+                        <div class="col">
+                            <MentorCard {...mentor} />
+                        </div>
+                    ))
+            }
+        </div>
+    </section>
+
+    {
+        archivedMentors.length > 0 && (
+            <section class="mt-5 mb-5">
+                <details class="border rounded-4 p-4 bg-body-tertiary">
+                    <summary class="h2 mb-0">Past mentors</summary>
+                    <p class="text-body-secondary mt-3 mb-4">
+                        Meet the mentors who previously supported the team.
+                    </p>
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+                        {archivedMentors.map(([, mentor]) => (
+                            <div class="col">
+                                <MentorCard {...mentor} />
+                            </div>
+                        ))}
+                    </div>
+                </details>
+            </section>
+        )
+    }
 </Layout>
