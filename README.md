@@ -83,7 +83,8 @@ Pages in `src/pages/` become routes automatically. Current sections include:
 GitHub Actions runs automatically for pull requests targeting `main` and for
 pushes to `main`:
 
-- **Quality checks** runs CSpell, Astro checks, and the production build.
+- **Quality checks** runs CSpell, formatting validation, Astro checks, and the
+  production build.
 - **Conventional Commits** validates every commit in a pull request and the pull
   request title.
 - **Link check** builds the site and reports broken links with Lychee. Link
