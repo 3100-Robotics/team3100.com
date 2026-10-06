@@ -1,0 +1,29 @@
+name: Content update
+description: Request a correction or update to website content.
+title: 'docs: '
+labels:
+    - content
+body:
+    - type: input
+      id: page
+      attributes:
+          label: Affected page
+          description: Which page contains the content to update?
+          placeholder: https://team3100.com/...
+      validations:
+          required: true
+    - type: textarea
+      id: change
+      attributes:
+          label: Requested change
+          description: Explain what should be corrected or added.
+          placeholder: Replace ... with ...
+      validations:
+          required: true
+    - type: textarea
+      id: source
+      attributes:
+          label: Source or supporting information
+          description:
+              Include a source, reference, or the proposed wording when
+              available.

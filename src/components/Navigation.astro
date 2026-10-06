@@ -1,5 +1,5 @@
 ---
-import LightningTurtlesLockup from "../assets/lightning-turtle-lockup.jpg";
+import LightningTurtlesLockup from '../assets/lightning-turtle-lockup.jpg';
 ---
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -36,15 +36,16 @@ import LightningTurtlesLockup from "../assets/lightning-turtle-lockup.jpg";
                 </button>
                 <ul class="navbar-nav flex-row gap-2">
                     <li class="nav-item dropdown d-flex align-items-center">
-                        <a class="nav-link" href="/about">About</a>
+                        <a class="nav-link" href="/about">
+                            About
+                        </a>
                         <button
                             class="nav-link dropdown-toggle border-0 bg-transparent px-1"
                             type="button"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                             aria-label="Toggle About menu"
-                        >
-                        </button>
+                        ></button>
 
                         <ul class="dropdown-menu">
                             <li class="nav-item">
@@ -61,27 +62,33 @@ import LightningTurtlesLockup from "../assets/lightning-turtle-lockup.jpg";
                                 <a
                                     class="dropdown-item"
                                     href="/about/team-resources"
-                                    >Team Resources</a
                                 >
+                                    Team Resources
+                                </a>
                             </li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/donate">Donate</a>
+                        <a class="nav-link" href="/donate">
+                            Donate
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/sponsors">Sponsors</a>
+                        <a class="nav-link" href="/sponsors">
+                            Sponsors
+                        </a>
                     </li>
                     <li class="nav-item dropdown d-flex align-items-center">
-                        <a class="nav-link" href="/news">News</a>
+                        <a class="nav-link" href="/news">
+                            News
+                        </a>
                         <button
                             class="nav-link dropdown-toggle border-0 bg-transparent px-1"
                             type="button"
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                             aria-label="Toggle News menu"
-                        >
-                        </button>
+                        ></button>
                         <ul class="dropdown-menu">
                             <li>
                                 <a
@@ -94,33 +101,35 @@ import LightningTurtlesLockup from "../assets/lightning-turtle-lockup.jpg";
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/search">Search</a>
+                        <a class="nav-link" href="/search">
+                            Search
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
         <script is:inline>
-            const toggleButton = document.getElementById("theme-toggle");
+            const toggleButton = document.getElementById('theme-toggle');
 
             const getTheme = () =>
-                document.documentElement.getAttribute("data-bs-theme") ||
-                "light";
+                document.documentElement.getAttribute('data-bs-theme') ||
+                'light';
 
             const syncToggleLabel = () => {
                 if (!toggleButton) return;
-                const nextTheme = getTheme() === "dark" ? "light" : "dark";
+                const nextTheme = getTheme() === 'dark' ? 'light' : 'dark';
                 toggleButton.textContent = `Switch to ${nextTheme} mode`;
             };
 
             syncToggleLabel();
 
-            toggleButton?.addEventListener("click", () => {
-                const nextTheme = getTheme() === "dark" ? "light" : "dark";
+            toggleButton?.addEventListener('click', () => {
+                const nextTheme = getTheme() === 'dark' ? 'light' : 'dark';
                 document.documentElement.setAttribute(
-                    "data-bs-theme",
+                    'data-bs-theme',
                     nextTheme,
                 );
-                localStorage.setItem("theme", nextTheme);
+                localStorage.setItem('theme', nextTheme);
                 syncToggleLabel();
             });
         </script>
