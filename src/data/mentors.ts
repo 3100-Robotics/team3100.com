@@ -120,7 +120,7 @@ export const mentors: Record<string, MentorProfileData> = {
         name: "Joe Koletar",
         title: "Programming and Build Mentor",
         role: "mentor",
-        yearsInFirst: [2015, 2025],
+        yearsInFirst: [2015],
         photoAlt: "Joe Koletar photo",
         imageSrc: KoletarJoe,
         bio: [
