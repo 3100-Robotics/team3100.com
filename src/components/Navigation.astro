@@ -1,15 +1,26 @@
 ---
-import LightningTurtlesLockup from '../assets/lightning-turtle-lockup.jpg';
+import LightningTurtlesLogo from '../assets/lightning-turtle-logo.svg';
 ---
 
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/">
             <img
-                src={LightningTurtlesLockup.src}
+                class="brand-logo brand-logo-dark"
+                src={LightningTurtlesLogo.src}
                 alt="The Lightning Turtles"
                 height="48"
             />
+            <img
+                class="brand-logo brand-logo-light"
+                src={LightningTurtlesLogo.src}
+                alt=""
+                height="48"
+                aria-hidden="true"
+            />
+            <span class="brand-name fw-bold fst-italic fs-2 text-uppercase">
+                The Lightning Turtles
+            </span>
         </a>
 
         <button
@@ -110,6 +121,8 @@ import LightningTurtlesLockup from '../assets/lightning-turtle-lockup.jpg';
         </div>
         <script is:inline>
             const toggleButton = document.getElementById('theme-toggle');
+            const darkLogo = document.querySelector('.brand-logo-dark');
+            const lightLogo = document.querySelector('.brand-logo-light');
 
             const getTheme = () =>
                 document.documentElement.getAttribute('data-bs-theme') ||
@@ -121,7 +134,18 @@ import LightningTurtlesLockup from '../assets/lightning-turtle-lockup.jpg';
                 toggleButton.textContent = `Switch to ${nextTheme} mode`;
             };
 
+            const syncBrandColor = () => {
+                const isDark = getTheme() === 'dark';
+                document.documentElement.style.setProperty(
+                    '--brand-color',
+                    isDark ? '#f1f3f5' : '#003100',
+                );
+                if (darkLogo) darkLogo.hidden = isDark;
+                if (lightLogo) lightLogo.hidden = !isDark;
+            };
+
             syncToggleLabel();
+            syncBrandColor();
 
             toggleButton?.addEventListener('click', () => {
                 const nextTheme = getTheme() === 'dark' ? 'light' : 'dark';
@@ -131,7 +155,25 @@ import LightningTurtlesLockup from '../assets/lightning-turtle-lockup.jpg';
                 );
                 localStorage.setItem('theme', nextTheme);
                 syncToggleLabel();
+                syncBrandColor();
             });
         </script>
     </div>
 </nav>
+
+<style>
+    .brand-logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    .brand-logo-light {
+        filter: brightness(0) saturate(100%) invert(96%) sepia(5%)
+            saturate(229%) hue-rotate(180deg) brightness(102%) contrast(94%);
+    }
+
+    .brand-name {
+        color: var(--brand-color, #003100);
+        font-family: 'Exo', sans-serif;
+    }
+</style>
