@@ -1,0 +1,23 @@
+---
+interface Props {
+    tags: string[];
+    archived?: boolean;
+}
+
+const { tags, archived = false } = Astro.props;
+---
+
+<div class="mentor-tags d-flex flex-wrap gap-2">
+    {
+        tags.map((tag: string) => (
+            <span
+                class:list={[
+                    "mentor-tag badge rounded-pill px-3 py-2",
+                    archived && "archived-tag",
+                ]}
+            >
+                {tag}
+            </span>
+        ))
+    }
+</div>
