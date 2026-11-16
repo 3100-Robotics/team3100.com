@@ -12,16 +12,16 @@ updates:
               patterns:
                   - astro
                   - '@astrojs/*'
+                  - typescript
               update-types:
                   - minor
                   - patch
-          dev-tools:
-              dependency-type: development
-              update-types:
-                  - minor
-                  - patch
-          production:
-              dependency-type: production
+          tooling:
+              patterns:
+                  - prettier
+                  - prettier-plugin-astro
+                  - cspell
+                  - '@commitlint/*'
               update-types:
                   - minor
                   - patch
