@@ -5,17 +5,38 @@ updates:
       schedule:
           interval: weekly
       open-pull-requests-limit: 5
-      allow:
-          - dependency-name: '*'
-            update-types:
-                - version-update:semver-major
+      cooldown:
+          default-days: 3
+      groups:
+          astro:
+              patterns:
+                  - astro
+                  - '@astrojs/*'
+              update-types:
+                  - minor
+                  - patch
+          dev-tools:
+              dependency-type: development
+              update-types:
+                  - minor
+                  - patch
+          production:
+              dependency-type: production
+              update-types:
+                  - minor
+                  - patch
 
     - package-ecosystem: github-actions
       directory: /
       schedule:
           interval: weekly
       open-pull-requests-limit: 5
-      allow:
-          - dependency-name: '*'
-            update-types:
-                - version-update:semver-major
+      cooldown:
+          default-days: 3
+      groups:
+          actions:
+              patterns:
+                  - '*'
+              update-types:
+                  - minor
+                  - patch
