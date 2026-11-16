@@ -1,0 +1,19 @@
+{
+    "version": "0.2",
+    "language": "en",
+    "files": [
+        "src/**/*.astro",
+        "*.md",
+        "*.mjs",
+        "package.json",
+        ".github/**/*.yml",
+        ".github/**/*.md"
+    ],
+    "ignorePaths": [
+        "node_modules/**",
+        "dist/**",
+        ".astro/**",
+        "package-lock.json"
+    ],
+    "words": ["Mendota", "pagefind", "lycheeverse", "commitlint"]
+}

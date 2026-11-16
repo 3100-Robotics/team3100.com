@@ -1,0 +1,36 @@
+name: Feature request
+description: Suggest an improvement for the team website.
+title: 'feat: '
+labels:
+    - enhancement
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Thanks for sharing an idea. Please search existing issues before opening a new one.
+    - type: textarea
+      id: problem
+      attributes:
+          label: Problem or opportunity
+          description: What would this change help visitors or team members do?
+          placeholder: It is difficult to ...
+      validations:
+          required: true
+    - type: textarea
+      id: proposal
+      attributes:
+          label: Proposed solution
+          description: Describe the change you would like to see.
+          placeholder: Add ...
+      validations:
+          required: true
+    - type: textarea
+      id: alternatives
+      attributes:
+          label: Alternatives considered
+          description: What other approaches or workarounds have you considered?
+    - type: textarea
+      id: context
+      attributes:
+          label: Additional context
+          description: Add mockups, examples, or other useful context.
