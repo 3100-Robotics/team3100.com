@@ -5,17 +5,38 @@ updates:
       schedule:
           interval: weekly
       open-pull-requests-limit: 5
-      allow:
-          - dependency-name: '*'
-            update-types:
-                - version-update:semver-major
+      cooldown:
+          default-days: 3
+      groups:
+          astro:
+              patterns:
+                  - astro
+                  - '@astrojs/*'
+                  - typescript
+              update-types:
+                  - minor
+                  - patch
+          tooling:
+              patterns:
+                  - prettier
+                  - prettier-plugin-astro
+                  - cspell
+                  - '@commitlint/*'
+              update-types:
+                  - minor
+                  - patch
 
     - package-ecosystem: github-actions
       directory: /
       schedule:
           interval: weekly
       open-pull-requests-limit: 5
-      allow:
-          - dependency-name: '*'
-            update-types:
-                - version-update:semver-major
+      cooldown:
+          default-days: 3
+      groups:
+          actions:
+              patterns:
+                  - '*'
+              update-types:
+                  - minor
+                  - patch

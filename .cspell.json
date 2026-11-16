@@ -15,5 +15,12 @@
         ".astro/**",
         "package-lock.json"
     ],
-    "words": ["Mendota", "pagefind", "lycheeverse", "commitlint"]
+    "words": [
+        "Mendota",
+        "pagefind",
+        "lycheeverse",
+        "commitlint",
+        "astro",
+        "astrojs"
+    ]
 }
